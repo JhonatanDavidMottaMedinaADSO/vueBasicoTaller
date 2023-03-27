@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="sp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="app.js" type="module"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>vueBasicoTaller</title>
+</head>
+
+<body>
+
+<!-- 1. Lectura de datos
+2. Crear Objeto
+3.Mostrar Objeto
+4.Crear Array
+5.Mostrar Array
+6.Elimine primer elemento del Array
+7.Elimine ultimo elemento del Array
+8.Eliminar cualquier elemento del array
+9. Agregar elemento al comienzo del array
+10. Agregar elemento al final del array
+11. Crear array con objetos
+12. Iterar array con objetos con FOR
+13. Iterar array con objetos con ForEach
+14. Iterar array con objetos con Map y crear copia
+15. proceso personal
+0. Salir); -->
+
+<div id="app">
+
+    <button v-if="myArray == null" v-on:click="crearArray">New Array</button>
+    <form v-else>
+        <label>Ingrese su nombre: </label>
+        <input type="text" v-model="nombres">
+        <button v-on:click.prevent="addArray">Agregar al final</button>
+        <button v-on:click.prevent="addArrayBegining">Agregar al inicio</button>
+        <button v-on:click.prevent="removeArray(nombres)">Eliminar Elemento Array</button>
+    </form>
+    <div>
+        <ul>
+            <li v-for="(nombre, index) in myArray" :key="index">{{nombre}}</li>
+        </ul>
+    </div>
+
+    <button v-if="myObject == null" v-on:click="crearObjeto">New Object</button>
+    <form v-else v-on:submit.prevent="submitForm">
+        <label>Ingrese el nombre de su mascota: </label>
+        <input type="text" v-model="nomPet">
+        <label>Ingrese la raza de su mascota: </label>
+        <input type="text" v-model="razaPet">
+        <button type="submit">Agregar datos al Objeto</button>
+    </form>
+    <div v-if="arrayObjetos != null">
+        <h3>Datos Agregados al Objeto</h3>
+        <ul>
+            <li v-for="(value, key) in arrayObjetos" :key="key">El nombre de su mascota es {{ value.nomMasco }} y su raza es {{ value.razaMasco }}</li>
+        </ul>
+    </div>
+    <div v-if="arrayObjetos != null">
+        <button v-on:click="metodoMap">Mostrar solo los nombres</button>
+        <ul>
+            <li v-for="(value, key) in arrayNomMasc" :key="key">El nombre de su mascota es {{ value }}</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+
+</html>
